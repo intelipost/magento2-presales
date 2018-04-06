@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_PreSales
+ * @copyright   Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <default>
+        <carriers>
+            <presales>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>Intelipost\PreSales\Model\Carrier\PreSales</model>
+                <name>Intelipost PreSales</name>
+                <title>Intelipost PreSales</title>
+                <type>I</type>
+                <!--
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+                -->
+                <custom_title><![CDATA[%s - days to deliver: %d]]></custom_title>
+                <same_day_title><![CDATA[%s - deliver same day]]></same_day_title>
+                <presales_attribute>intelipost_product_presales</presales_attribute>
+                <package_attribute>intelipost_product_package</package_attribute>
+                <readytogo_attribute>intelipost_product_readytogo</readytogo_attribute>
+                <date_format><![CDATA[Y-m-d H:i:s]]></date_format>
+            </presales>
+        </carriers>
+    </default>
+</config>
+
