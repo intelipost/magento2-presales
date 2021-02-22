@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_PreSales
+ * @copyright   Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <module name="Intelipost_PreSales" setup_version="1.0.0">
+        <sequence>
+            <module name="Intelipost_Quote" />
+        </sequence>
+    </module>
+</config>
+
