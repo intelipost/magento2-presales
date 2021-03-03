@@ -30,12 +30,14 @@ class PreSales extends \Intelipost\Quote\Model\Carrier\Intelipost
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory,
-        \Psr\Log\LoggerInterface $logger,
+        \Psr\Log\LoggerInterface $_logger,
         \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory,
         \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $rateMethodFactory,
-        \Intelipost\Quote\Helper\Data $quoteHelper,
-        \Intelipost\Quote\Helper\Api $apiHelper,
+        \Intelipost\Quote\Helper\Data $helper,
+        \Intelipost\Quote\Helper\Api $api,
         \Intelipost\Quote\Model\QuoteFactory $quoteFactory,
+        \Magento\Catalog\Model\ProductFactory $_productFactory,
+        \Magento\Catalog\Model\ProductRepository $productRespository,
         array $data = []
     ) {
         $this->_rateResultFactory = $rateResultFactory;
@@ -43,20 +45,22 @@ class PreSales extends \Intelipost\Quote\Model\Carrier\Intelipost
         $this->_rateErrorFactory  = $rateErrorFactory;
 
         $this->_scopeConfig = $scopeConfig;
-        $this->_quoteHelper = $quoteHelper;
-        $this->_apiHelper = $apiHelper;
+        $this->_quoteHelper = $helper;
+        $this->_apiHelper = $api;
 
         $this->_quoteFactory = $quoteFactory;
 
         parent::__construct(
             $scopeConfig,
             $rateErrorFactory,
-            $logger,
+            $_logger,
             $rateResultFactory,
             $rateMethodFactory,
-            $quoteHelper,
-            $apiHelper,
+            $helper,
+            $api,
             $quoteFactory,
+            $_productFactory,
+            $productRespository,
             $data
         );
     }
@@ -316,7 +320,7 @@ class PreSales extends \Intelipost\Quote\Model\Carrier\Intelipost
             $deliveryMethodType = $quote->getDeliveryMethodType();
             $deliveryEstimateBusinessDays = $quote->getDeliveryEstimateBusinessDays();
 
-            $quote->setTotal($totalFinalShippingCost [$deliveryMethodType]);
+            if(isset($totalFinalShippingCost[$deliveryMethodType])) $quote->setTotal($totalFinalShippingCost[$deliveryMethodType]);
 
             // GROUP BY delivery_method_id
             if (empty($collection [$deliveryMethodType])) {
