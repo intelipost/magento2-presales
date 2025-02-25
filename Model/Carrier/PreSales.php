@@ -356,7 +356,9 @@ public function collectRates(RateRequest $request, $pickup = false)
         $finalShippingCost = $child->getFinalShippingCost();
         $total = $child->getTotal();
 
-        usort($result, create_function('$a,$b', 'return $a->getDeliveryEstimateDateExactIso() > $b->getDeliveryEstimateDateExactIso();'));
+        usort($result, function($a, $b) {
+            return $a->getDeliveryEstimateDateExactIso() > $b->getDeliveryEstimateDateExactIso();
+        });
 
         foreach ($result as $item)
         {
